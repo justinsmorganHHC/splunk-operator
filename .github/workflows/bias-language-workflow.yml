@@ -1,0 +1,15 @@
+# This is a basic workflow to help you get started with Actions
+
+# Allows you to run this workflow manually from the Actions tab
+
+name: GitHub Actions
+on: [push]
+jobs:
+  biased_lang:
+    runs-on: ubuntu-latest
+    name: Detecting Biased Language
+    steps:
+      - uses: actions/checkout@v2
+      - id: biased-lang-linter
+        uses: splunk/biased-lang-linter@main
+        continue-on-error: false

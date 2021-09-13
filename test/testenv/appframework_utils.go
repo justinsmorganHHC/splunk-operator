@@ -2,6 +2,7 @@ package testenv
 
 import (
 	"fmt"
+	splcommon "github.com/splunk/splunk-operator/pkg/splunk/common"
 	"strings"
 
 	enterpriseApi "github.com/splunk/splunk-operator/pkg/apis/enterprise/v2"
@@ -69,11 +70,11 @@ func GetPodInstalledAppVersion(deployment *Deployment, podName string, ns string
 	//For cluster-wide install the apps are extracted to different locations
 	if clusterWideInstall {
 		if strings.Contains(podName, "-indexer-") {
-			path = "etc/slave-apps"
+			path = splcommon.PeerApps
 		} else if strings.Contains(podName, "cluster-master") {
-			path = "etc/master-apps"
+			path = splcommon.ManagerApps
 		} else if strings.Contains(podName, "-deployer-") {
-			path = "etc/shcluster/apps"
+			path = splcommon.SHCApps
 		}
 	}
 	filePath := fmt.Sprintf("/opt/splunk/%s/%s/default/app.conf", path, appname)

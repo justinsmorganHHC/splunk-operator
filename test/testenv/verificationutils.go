@@ -199,7 +199,7 @@ func IndexerClusterMultisiteStatus(deployment *Deployment, testenvInstance *Test
 	}
 	gomega.Eventually(func() map[string][]string {
 		podName := fmt.Sprintf(ClusterMasterPod, deployment.GetName())
-		stdin := "curl -ks -u admin:$(cat /mnt/splunk-secrets/password) https://localhost:8089/services/cluster/master/sites?output_mode=json"
+		stdin := "curl -ks -u admin:$(cat /mnt/splunk-secrets/password) " + splcommon.ManagerSiteTest
 		command := []string{"/bin/sh"}
 		stdout, stderr, err := deployment.PodExecCommand(podName, command, stdin, false)
 		if err != nil {
@@ -633,11 +633,11 @@ func VerifyAppsCopied(deployment *Deployment, testenvInstance *TestEnv, ns strin
 			//For cluster-wide install the apps are extracted to different locations
 			if clusterWideInstall {
 				if strings.Contains(podName, "cluster-master") {
-					path = "etc/master-apps/"
+					path = splcommon.ManagerApps
 				} else if strings.Contains(podName, "-deployer-") {
-					path = "etc/shcluster/apps"
+					path = splcommon.SHCApps
 				} else if strings.Contains(podName, "-indexer-") {
-					path = "etc/slave-apps/"
+					path = splcommon.PeerApps
 				}
 			}
 			testenvInstance.Log.Info("Verifying App in Directory", "Directory Name", path, "Pod Name", podName)

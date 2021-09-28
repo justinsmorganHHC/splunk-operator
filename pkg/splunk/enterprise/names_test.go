@@ -15,13 +15,14 @@
 package enterprise
 
 import (
+	splcommon "github.com/splunk/splunk-operator/pkg/splunk/common"
 	"os"
 	"testing"
 )
 
 func TestGetSplunkDeploymentName(t *testing.T) {
 	got := GetSplunkDeploymentName(SplunkClusterMaster, "t1")
-	want := "splunk-t1-cluster-master"
+	want := splcommon.ManagerT1
 	if got != want {
 		t.Errorf("GetSplunkDeploymentName(\"%s\",\"%s\") = %s; want %s", SplunkIndexer.ToString(), "t1", got, want)
 	}

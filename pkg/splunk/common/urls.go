@@ -11,6 +11,9 @@ const (
 	//ManagerPeersAPI = "/services/cluster/master/peers"
 	ManagerPeersAPI = Services + Manager + Peers
 
+	//ClusterServiceConfig = "/services/cluster/config?"
+	ClusterServiceConfig = Services + Cluster + Config + QM
+
 	//PeerInfoAPI = "/services/cluster/slave/info"
 	PeerInfoAPI = Services + Peer + Info
 
@@ -40,14 +43,23 @@ const (
 	//   Base Hosts
 	//*****************
 
-	//LocalURL  =
-	LocalURL = "https://localhost:8089"
+	//Port8089 = ":8089"
+	Port8089 = ":8089"
 
-	//Manager =
-	Manager = "/cluster/master"
+	//LocalURL = "https://localhost:8089"
+	LocalURL = "https://localhost" + Port8089
 
-	//Peer    =
-	Peer = "/cluster/slave"
+	//Cluster = "/cluster"
+	Cluster = "/cluster"
+
+	//Manager = "/cluster/master"
+	Manager = Cluster + "/master"
+
+	//Peer = "/cluster/slave"
+	Peer = Cluster + "/slave"
+
+	//Spl = "splunk"
+	Spl = "splunk"
 
 	//*****************
 	//  Base Outputs
@@ -102,9 +114,21 @@ const (
 	//Apply = "/apply"
 	Apply = "/apply"
 
+	//Config = "/config"
+	Config = "/config"
+
+	//LocalsPeer = "/localslave"
+	LocalsPeer = "/localslave"
+
+	//Licenser = "/licenser"
+	Licenser = "/licenser"
+
 	//QM = Question Mark
 	QM = "?"
 
 	//Amp = ampersand
 	Amp = "&"
+
+	//Dash = "-"
+	Dash = "-"
 )

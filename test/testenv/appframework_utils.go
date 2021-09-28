@@ -71,7 +71,7 @@ func GetPodInstalledAppVersion(deployment *Deployment, podName string, ns string
 	if clusterWideInstall {
 		if strings.Contains(podName, "-indexer-") {
 			path = splcommon.PeerApps
-		} else if strings.Contains(podName, "cluster-master") {
+		} else if strings.Contains(podName, splcommon.CM) {
 			path = splcommon.ManagerApps
 		} else if strings.Contains(podName, "-deployer-") {
 			path = splcommon.SHCApps

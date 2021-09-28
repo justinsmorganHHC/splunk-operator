@@ -632,7 +632,7 @@ func VerifyAppsCopied(deployment *Deployment, testenvInstance *TestEnv, ns strin
 			path := "etc/apps"
 			//For cluster-wide install the apps are extracted to different locations
 			if clusterWideInstall {
-				if strings.Contains(podName, "cluster-master") {
+				if strings.Contains(podName, splcommon.CM) {
 					path = splcommon.ManagerApps
 				} else if strings.Contains(podName, "-deployer-") {
 					path = splcommon.SHCApps
